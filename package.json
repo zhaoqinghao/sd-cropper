@@ -1,0 +1,50 @@
+{
+  "name": "sd-cropper",
+  "version": "0.3.1",
+  "description": "A simple Vue picture clipping plugin",
+  "keywords": [
+    "vue",
+    "cropper",
+    "vue-cropper",
+    "vue-component",
+    "vue-cropper-component"
+  ],
+  "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhaoqinghao/sd-cropper.git"
+  },
+  "author": "goodboy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhaoqinghao/sd-cropper/issues"
+  },
+  "homepage": "https://github.com/zhaoqinghao/sd-cropper#readme",
+  "scripts": {
+    "build": "rm -rf ./dist && webpack --colors --hide-modules"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "babel-runtime": "^6.23.0",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.15.0",
+    "vue": "^2.5.17",
+    "vue-loader": "^14.2.2",
+    "vue-template-compiler": "^2.5.17",
+    "vue-html-loader": "^1.2.4",
+    "vue-style-loader": "^2.0.4",
+    "webpack": "^2.2.1"
+  },
+  "browserify": {
+    "transform": [
+      "vueify"
+    ]
+  },
+  "dependencies": {
+    "exif-js": "^2.3.0"
+  }
+}
