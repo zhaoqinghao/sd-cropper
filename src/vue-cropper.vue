@@ -49,7 +49,7 @@
 					@mousedown="cropMove"
 		      @touchstart="cropMove"
 				></span>
-				<span class="crop-info" v-if="info" :style="{'top': cropInfo}">{{  this.cropW > 0 ? this.cropW : 0 }} × {{ this.cropH > 0 ? this.cropH : 0 }}</span>
+				<span class="crop-info" v-if="info" :style="{'top': cropInfo}">{{  this.cropW > 0 ? this.cropW * this.outZoom : 0 }} × {{ this.cropH > 0 ? this.cropH * this.outZoom : 0 }}</span>
 				<span v-if="!fixedBox">
 					<span class="crop-line line-w" @mousedown="changeCropSize($event, false, true, 0, 1)" @touchstart="changeCropSize($event, false, true, 0, 1)"></span>
 					<span class="crop-line line-a" @mousedown="changeCropSize($event, true, false, 1, 0)" @touchstart="changeCropSize($event, true, false, 1, 0)"></span>
@@ -143,6 +143,11 @@ export default {
       type: Number,
       default: 1
     },
+	// 输出图片时需要放大还是缩小
+	outZoom: {
+      type: Number,
+	  default: 1
+	},
     outputType: {
       type: String,
       default: "jpeg"
@@ -1060,13 +1065,13 @@ export default {
             (this.y - cropOffsertY + this.trueHeight * (1 - this.scale) / 2) * dpr;
           // console.log(dx, dy)
           //保存状态
-          canvas.width = width;
-          canvas.height = height;
+          canvas.width = width * this.outZoom;
+          canvas.height = height * this.outZoom;
           ctx.save();
           switch (rotate) {
             case 0:
               if (!this.full) {
-                ctx.drawImage(img, dx, dy, imgW, imgH);
+                ctx.drawImage(img, dx * this.outZoom, dy * this.outZoom, imgW * this.outZoom, imgH * this.outZoom);
               } else {
                 // 输出原图比例截图
                 canvas.width = width / this.scale;
